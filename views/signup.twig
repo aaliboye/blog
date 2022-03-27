@@ -1,0 +1,69 @@
+{% extends "layout.twig" %}
+
+{% block body %}
+
+ {% if errorForm %}
+  
+    <div class="alert alert-danger" role="alert">
+    </div>
+    <ul class="errors"> 
+    
+      {% for err in errorForm %}
+        {% if err.firstname %}
+          <li> {{err.firstname.message}} </li>
+        {% endif %}
+        {% if err.lastname %}
+          <li> {{err.lastname.message}} </li>
+        {% endif %}
+        {% if err.username %}
+          <li> {{err.username.message}} </li>
+        {% endif %}
+        {% if err.email %}
+          <li> {{err.email.message}} </li>
+        {% endif %}
+        {% if err.password %}
+          <li> {{err.password.message}} </li>
+        {% endif %}
+        
+      {% endfor %}
+
+    </ul>
+
+  {% endif %}
+
+    <form action="" method="post" >
+
+      <div class="form-group">
+        <label for="">firstname</label>
+        <input type="text" class="form-control" name="firstname" id=""  placeholder="">
+      </div>
+      <div class="form-group">
+          <label for="">lastname</label>
+          <input type="text" class="form-control" name="lastname" id=""  placeholder="">
+      </div>
+
+      <div class="form-group">
+          <label for="">username</label>
+          <input type="text" class="form-control" name="username" id=""  placeholder="">
+      </div>
+
+      <div class="form-group">
+          <label for="">email</label>
+          <input type="email" class="form-control" name="email" id=""  placeholder="">
+      </div>
+
+      <div class="form-group">
+          <label for="">password</label>
+          <input type="password" class="form-control" name="password" id=""  placeholder="">
+      </div>
+
+        <div class="form-group">
+          <label for="">Confirm password</label>
+          <input type="password" class="form-control" name="passwordConfirm" id=""  placeholder="">
+      </div>
+      <br>
+      
+          <button type="submit" class="btn btn-primary">Sign up</button>
+    </form>
+
+{% endblock %}

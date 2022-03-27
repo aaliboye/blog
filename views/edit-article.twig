@@ -1,0 +1,85 @@
+{% extends "layout.twig" %}
+
+{% block body %}
+
+
+  {% if errorForm %}
+  
+    <div class="alert alert-danger" role="alert">
+    </div>
+    <ul class="errors"> 
+    
+      {% for err in errorForm %}
+        {% if err.name %}
+          <li> {{err.name.message}} </li>
+        {% endif %}
+        {% if err.category %}
+          <li> {{err.category.message}} </li>
+        {% endif %}
+        {% if err.content %}
+          <li> {{err.content.message}} </li>
+        {% endif %}
+        {% if err.image %}
+          <li> {{err.image.message}} </li>
+        {% endif %}
+        
+      {% endfor %}
+
+    </ul>
+
+  {% endif %}
+  
+<h1 class="text-center"> Edit Article </h1>
+
+<form action="" method="post" enctype="multipart/form-data">
+
+
+  <div class="form-group">
+    <label for="">nom article</label>
+    <input type="text"
+      class="form-control" name="name" value="{{article.name}}" id="" placeholder="">
+  </div>
+    <div class="form-group">
+      <label for=""></label>
+      <select class="form-control" name="category" id="">
+        <option value="">choisir votre category</option>
+        {% if categories %}
+        {% for category in categories %}
+          {% if category.title is same as({{article.category}}) %}
+          
+            <option value="{{category.title}}" select>{{category.title}}</option>
+
+          {% else %}
+            <option value="{{category.title}}" >{{category.title}}</option>
+          {% endif %}
+          
+        {% endfor %}
+        {% endif %}
+        
+      </select>
+  </div>
+
+    <div class="form-group">
+      <label for="">contenu</label>
+      <textarea class="form-control" name="content" id="content" rows="3">{{article.content | raw}}</textarea>
+    </div>
+
+    <div class="form-group">
+      <label for=""></label>
+      <input type="file" name="image" id="" class="form-control">
+    </div>
+  
+      <button type="submit" class="btn btn-primary">Edit</button>
+</form>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#content' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
+{% endblock %}

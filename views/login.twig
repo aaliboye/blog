@@ -1,0 +1,52 @@
+{% extends "layout.twig" %}
+
+{% block body %}
+
+  {% if errorForm %}
+
+    {% for err in errorForm %}
+
+      {% if err.username %}
+
+        <div class="alert alert-danger" role="alert">
+          <strong>{{err.username.message}}</strong>
+        </div>
+
+      {% endif %}
+
+      {% if err.password %}
+
+        <div class="alert alert-danger" role="alert">
+          <strong>{{err.password.message}}</strong>
+        </div>
+
+      {% endif %}
+      
+      
+    {% endfor %}
+
+  {% endif %}
+  
+  
+    <form action="" method="post" >
+     <p class="text-center"> You don't have an acount ? <a href="/users/signup/">Please click to signup</a> </p>
+      <div class="form-group">
+        <label for="">username</label>
+        <input type="text" class="form-control" name="username" id=""  placeholder="">
+      </div>
+
+      <div class="form-group">
+          <label for="">password</label>
+          <input type="password" class="form-control" name="password" id=""  placeholder="">
+      </div>
+
+       <p class="text-center"> Do you forget your password ? <a href="/users/forgot-password">Please click to reset</a> </p>
+
+      <br>
+
+        <button type="submit" class="btn btn-success">se connecter</button>
+
+    </form>
+
+
+{% endblock %}
